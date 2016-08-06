@@ -1,0 +1,9 @@
+{
+    "name": "anomaly/applications-module",
+    "type": "streams-addon",
+    "autoload": {
+        "psr-4": {
+            "Anomaly\\ApplicationsModule\\": "src/"
+        }
+    }
+}
