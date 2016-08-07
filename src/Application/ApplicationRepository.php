@@ -31,4 +31,15 @@ class ApplicationRepository extends EloquentRepository implements ApplicationRep
     {
         $this->model = $model;
     }
+
+    /**
+     * Find an application by it's reference.
+     *
+     * @param $reference
+     * @return ApplicationModel
+     */
+    public function findByReference($reference)
+    {
+        return $this->model->where('reference', $reference)->first();
+    }
 }

@@ -1,5 +1,6 @@
 <?php namespace Anomaly\ApplicationsModule\Application\Contract;
 
+use Anomaly\ApplicationsModule\Application\ApplicationModel;
 use Anomaly\Streams\Platform\Model\Contract\EloquentRepositoryInterface;
 
 /**
@@ -13,4 +14,11 @@ use Anomaly\Streams\Platform\Model\Contract\EloquentRepositoryInterface;
 interface ApplicationRepositoryInterface extends EloquentRepositoryInterface
 {
 
+    /**
+     * Find an application by it's reference.
+     *
+     * @param $reference
+     * @return ApplicationModel
+     */
+    public function findByReference($reference);
 }
