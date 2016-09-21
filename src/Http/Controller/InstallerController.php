@@ -1,4 +1,4 @@
-<?php namespace Anomaly\ApplicationsModule\Http\Controller\Admin;
+<?php namespace Anomaly\ApplicationsModule\Http\Controller;
 
 use Anomaly\ApplicationsExtension\Application\Command\LoadExtensionSeeders;
 use Anomaly\ApplicationsModule\Application\Command\LoadApplicationInstallers;
@@ -6,6 +6,7 @@ use Anomaly\ApplicationsModule\Application\Command\LoadExtensionInstallers;
 use Anomaly\ApplicationsModule\Application\Command\LoadModuleInstallers;
 use Anomaly\ApplicationsModule\Application\Command\LoadModuleSeeders;
 use Anomaly\ApplicationsModule\Application\Contract\ApplicationRepositoryInterface;
+use Anomaly\Streams\Platform\Application\Command\InitializeApplication;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Anomaly\Streams\Platform\Installer\Installer;
 use Anomaly\Streams\Platform\Installer\InstallerCollection;
@@ -15,10 +16,9 @@ use Illuminate\Contracts\Container\Container;
 /**
  * Class InstallerController
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\ApplicationsModule\Http\Controller\Admin
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class InstallerController extends AdminController
 {
@@ -98,6 +98,8 @@ class InstallerController extends AdminController
     public function run(Container $container, $reference, $key)
     {
         $installers = new InstallerCollection();
+
+        $this->dispatch(new InitializeApplication($reference));
 
         $this->dispatch(new LoadApplicationInstallers($installers, $reference));
         $this->dispatch(new LoadModuleInstallers($installers, $reference));

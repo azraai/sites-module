@@ -19,13 +19,13 @@ class ApplicationsModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $routes = [
-        'admin/applications'                        => 'Anomaly\ApplicationsModule\Http\Controller\Admin\ApplicationsController@index',
-        'admin/applications/create'                 => 'Anomaly\ApplicationsModule\Http\Controller\Admin\ApplicationsController@create',
-        'admin/applications/edit/{id}'              => 'Anomaly\ApplicationsModule\Http\Controller\Admin\ApplicationsController@edit',
-        'admin/applications/install/{reference}'    => 'Anomaly\ApplicationsModule\Http\Controller\Admin\InstallerController@install',
-        'admin/applications/finish/{reference}'     => 'Anomaly\ApplicationsModule\Http\Controller\Admin\InstallerController@finish',
-        'admin/applications/run/{reference}/{key}'  => 'Anomaly\ApplicationsModule\Http\Controller\Admin\InstallerController@run',
-        'admin/applications/seed/{reference}/{key}' => 'Anomaly\ApplicationsModule\Http\Controller\Admin\InstallerController@seed',
+        'admin/applications'                  => 'Anomaly\ApplicationsModule\Http\Controller\Admin\ApplicationsController@index',
+        'admin/applications/create'           => 'Anomaly\ApplicationsModule\Http\Controller\Admin\ApplicationsController@create',
+        'admin/applications/edit/{id}'        => 'Anomaly\ApplicationsModule\Http\Controller\Admin\ApplicationsController@edit',
+        'applications/install/{reference}'    => 'Anomaly\ApplicationsModule\Http\Controller\InstallerController@install',
+        'applications/finish/{reference}'     => 'Anomaly\ApplicationsModule\Http\Controller\InstallerController@finish',
+        'applications/run/{reference}/{key}'  => 'Anomaly\ApplicationsModule\Http\Controller\InstallerController@run',
+        'applications/seed/{reference}/{key}' => 'Anomaly\ApplicationsModule\Http\Controller\InstallerController@seed',
     ];
 
     /**

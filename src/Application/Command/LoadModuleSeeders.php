@@ -4,15 +4,14 @@ use Anomaly\Streams\Platform\Addon\Module\Module;
 use Anomaly\Streams\Platform\Addon\Module\ModuleCollection;
 use Anomaly\Streams\Platform\Installer\Installer;
 use Anomaly\Streams\Platform\Installer\InstallerCollection;
-use Illuminate\Contracts\Console\Kernel;
+use Anomaly\Streams\Platform\Console\Kernel;
 
 /**
  * Class LoadModuleSeeders
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\ApplicationsModule\Application\Command
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class LoadModuleSeeders
 {
@@ -64,9 +63,9 @@ class LoadModuleSeeders
                         $console->call(
                             'db:seed',
                             [
-                                '--addon'     => $module->getNamespace(),
-                                '--reference' => $this->reference,
-                                '--force'     => true,
+                                '--addon' => $module->getNamespace(),
+                                '--app'   => $this->reference,
+                                '--force' => true,
                             ]
                         );
                     }

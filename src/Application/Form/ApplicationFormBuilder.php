@@ -26,7 +26,7 @@ class ApplicationFormBuilder extends FormBuilder
         ],
         'reference' => [
             'required' => true,
-            'disabled' => 'edit',
+            //'disabled' => 'edit',
             'type'     => 'anomaly.field_type.slug',
             'label'    => 'anomaly.module.applications::field.reference.name',
             'config'   => [

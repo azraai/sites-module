@@ -21,7 +21,7 @@
 
     {% for key, installer in installers %}
         <div
-                data-action="{{ url('admin/applications/' ~ (action == 'install' ? 'run' : 'seed') ~ '/' ~ application.reference ~ '/' ~ key) }}"
+                data-action="{{ url('applications/' ~ (action == 'install' ? 'run' : 'seed') ~ '/' ~ application.reference ~ '/' ~ key) }}"
                 data-step="{{ trans(installer.getMessage()) }}"
                 data-progress="{{ ((loop.index-1)/(installers.count())*100)|round(0, 'floor') }}"
         ></div>

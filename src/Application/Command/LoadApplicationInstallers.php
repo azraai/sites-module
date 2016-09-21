@@ -1,19 +1,21 @@
 <?php namespace Anomaly\ApplicationsModule\Application\Command;
 
+use Anomaly\Streams\Platform\Console\Kernel;
 use Anomaly\Streams\Platform\Installer\Installer;
 use Anomaly\Streams\Platform\Installer\InstallerCollection;
-use Illuminate\Contracts\Console\Kernel;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
  * Class LoadApplicationInstallers
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\ApplicationsModule\Application\Command
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class LoadApplicationInstallers
 {
+
+    use DispatchesJobs;
 
     /**
      * The application reference.
@@ -53,11 +55,9 @@ class LoadApplicationInstallers
                     $console->call(
                         'migrate',
                         [
-                            '--force'     => true,
-                            '--no-addons' => true,
-                            '--installed' => false,
-                            '--app'       => $this->reference,
-                            '--path'      => 'vendor/anomaly/streams-platform/migrations/application',
+                            '--force' => true,
+                            '--app'   => $this->reference,
+                            '--path'  => 'vendor/anomaly/streams-platform/migrations/application',
                         ]
                     );
                 }
