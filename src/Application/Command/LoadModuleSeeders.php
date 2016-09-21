@@ -4,7 +4,6 @@ use Anomaly\Streams\Platform\Addon\Module\Module;
 use Anomaly\Streams\Platform\Addon\Module\ModuleCollection;
 use Anomaly\Streams\Platform\Installer\Installer;
 use Anomaly\Streams\Platform\Installer\InstallerCollection;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Console\Kernel;
 
 /**
@@ -15,7 +14,7 @@ use Illuminate\Contracts\Console\Kernel;
  * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\ApplicationsModule\Application\Command
  */
-class LoadModuleSeeders implements SelfHandling
+class LoadModuleSeeders
 {
 
     /**

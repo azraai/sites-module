@@ -30,8 +30,8 @@ class ApplicationFormBuilder extends FormBuilder
             'type'     => 'anomaly.field_type.slug',
             'label'    => 'anomaly.module.applications::field.reference.name',
             'config'   => [
-                'slugify' => 'name'
-            ]
+                'slugify' => 'name',
+            ],
         ],
         'domain'    => [
             'required' => true,

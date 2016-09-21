@@ -12,5 +12,5 @@ return [
     ],
     'enabled'   => [
         'name' => 'Enabled',
-    ]
+    ],
 ];

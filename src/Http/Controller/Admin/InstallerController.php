@@ -6,14 +6,11 @@ use Anomaly\ApplicationsModule\Application\Command\LoadExtensionInstallers;
 use Anomaly\ApplicationsModule\Application\Command\LoadModuleInstallers;
 use Anomaly\ApplicationsModule\Application\Command\LoadModuleSeeders;
 use Anomaly\ApplicationsModule\Application\Contract\ApplicationRepositoryInterface;
-use Anomaly\Streams\Platform\Application\Command\ReloadEnvironmentFile;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Anomaly\Streams\Platform\Installer\Installer;
 use Anomaly\Streams\Platform\Installer\InstallerCollection;
 use Illuminate\Cache\CacheManager;
-use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Contracts\Container\Container;
-use Illuminate\Contracts\Events\Dispatcher;
 
 /**
  * Class InstallerController

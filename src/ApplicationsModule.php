@@ -21,9 +21,9 @@ class ApplicationsModule extends Module
     protected $sections = [
         'applications' => [
             'buttons' => [
-                'new_application'
-            ]
-        ]
+                'new_application',
+            ],
+        ],
     ];
 
 }

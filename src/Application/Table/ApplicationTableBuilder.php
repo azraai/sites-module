@@ -20,21 +20,21 @@ class ApplicationTableBuilder extends TableBuilder
      */
     protected $columns = [
         'entry.name'      => [
-            'heading' => 'anomaly.module.applications::field.name.name'
+            'heading' => 'anomaly.module.applications::field.name.name',
         ],
         'entry.reference' => [
-            'heading' => 'anomaly.module.applications::field.reference.name'
+            'heading' => 'anomaly.module.applications::field.reference.name',
         ],
         'entry.domain'    => [
-            'heading' => 'anomaly.module.applications::field.domain.name'
+            'heading' => 'anomaly.module.applications::field.domain.name',
         ],
         'entry.enabled'   => [
             'heading' => 'anomaly.module.applications::field.enabled.name',
             'wrapper' => '<span class="label label-{value.context}">{value.status}</span>',
             'value'   => [
                 'context' => 'entry.enabled ? "success" : "danger"',
-                'status'  => 'entry.enabled ? trans("streams::addon.enabled") : trans("streams::addon.disabled")'
-            ]
+                'status'  => 'entry.enabled ? trans("streams::addon.enabled") : trans("streams::addon.disabled")',
+            ],
         ],
     ];
 
@@ -54,7 +54,7 @@ class ApplicationTableBuilder extends TableBuilder
      */
     protected $options = [
         'order_by' => [
-            'name' => 'ASC'
-        ]
+            'name' => 'ASC',
+        ],
     ];
 }

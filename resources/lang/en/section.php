@@ -2,6 +2,6 @@
 
 return [
     'applications' => [
-        'title' => 'Applications'
-    ]
+        'title' => 'Applications',
+    ],
 ];

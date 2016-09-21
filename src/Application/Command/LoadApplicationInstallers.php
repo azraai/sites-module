@@ -2,7 +2,6 @@
 
 use Anomaly\Streams\Platform\Installer\Installer;
 use Anomaly\Streams\Platform\Installer\InstallerCollection;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Console\Kernel;
 
 /**
@@ -13,7 +12,7 @@ use Illuminate\Contracts\Console\Kernel;
  * @author        Ryan Thompson <ryan@pyrocms.com>
  * @package       Anomaly\ApplicationsModule\Application\Command
  */
-class LoadApplicationInstallers implements SelfHandling
+class LoadApplicationInstallers
 {
 
     /**
@@ -58,7 +57,7 @@ class LoadApplicationInstallers implements SelfHandling
                             '--no-addons' => true,
                             '--installed' => false,
                             '--app'       => $this->reference,
-                            '--path'      => 'vendor/anomaly/streams-platform/migrations/application'
+                            '--path'      => 'vendor/anomaly/streams-platform/migrations/application',
                         ]
                     );
                 }

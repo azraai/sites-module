@@ -2,7 +2,6 @@
 
 use Anomaly\ApplicationsModule\Application\Contract\ApplicationRepositoryInterface;
 use Anomaly\Streams\Platform\Model\EloquentRepository;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 /**
  * Class ApplicationRepository
