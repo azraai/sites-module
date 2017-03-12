@@ -1,7 +1,6 @@
 <?php namespace Anomaly\ApplicationsModule\Application\Form;
 
 use Anomaly\ApplicationsModule\Application\ApplicationInstaller;
-use Illuminate\Routing\Redirector;
 
 /**
  * Class ApplicationFormHandler
@@ -18,23 +17,15 @@ class ApplicationFormHandler
      * Handle the form.
      *
      * @param ApplicationFormBuilder $builder
-     * @param Redirector             $redirect
+     *
      */
-    public function handle(ApplicationFormBuilder $builder, Redirector $redirect)
+    public function handle(ApplicationFormBuilder $builder)
     {
         if (!$builder->canSave()) {
             return;
         }
 
         (new ApplicationInstaller())->install($builder->getFormValues()->all());
-
-        $builder->setFormResponse(
-            $redirect->to(
-                'http://' . $builder->getFormValue('domain') . '/applications/install/' . $builder->getFormValue(
-                    'reference'
-                )
-            )
-        );
 
         $builder->saveForm();
     }

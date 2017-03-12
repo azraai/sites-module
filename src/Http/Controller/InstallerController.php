@@ -7,7 +7,7 @@ use Anomaly\ApplicationsModule\Application\Command\LoadModuleInstallers;
 use Anomaly\ApplicationsModule\Application\Command\LoadModuleSeeders;
 use Anomaly\ApplicationsModule\Application\Contract\ApplicationRepositoryInterface;
 use Anomaly\Streams\Platform\Application\Command\InitializeApplication;
-use Anomaly\Streams\Platform\Http\Controller\AdminController;
+use Anomaly\Streams\Platform\Http\Controller\PublicController;
 use Anomaly\Streams\Platform\Installer\Installer;
 use Anomaly\Streams\Platform\Installer\InstallerCollection;
 use Illuminate\Cache\CacheManager;
@@ -20,7 +20,7 @@ use Illuminate\Contracts\Container\Container;
  * @author PyroCMS, Inc. <support@pyrocms.com>
  * @author Ryan Thompson <ryan@pyrocms.com>
  */
-class InstallerController extends AdminController
+class InstallerController extends PublicController
 {
 
     /**
