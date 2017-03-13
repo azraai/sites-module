@@ -1,4 +1,4 @@
-<?php namespace Anomaly\ApplicationsModule\Application\Command;
+<?php namespace Anomaly\SitesModule\Site\Command;
 
 use Anomaly\Streams\Platform\Console\Kernel;
 use Anomaly\Streams\Platform\Installer\Installer;
@@ -6,19 +6,19 @@ use Anomaly\Streams\Platform\Installer\InstallerCollection;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
- * Class LoadApplicationInstallers
+ * Class LoadSiteInstallers
  *
  * @link   http://pyrocms.com/
  * @author PyroCMS, Inc. <support@pyrocms.com>
  * @author Ryan Thompson <ryan@pyrocms.com>
  */
-class LoadApplicationInstallers
+class LoadSiteInstallers
 {
 
     use DispatchesJobs;
 
     /**
-     * The application reference.
+     * The site reference.
      *
      * @var string
      */
@@ -32,7 +32,7 @@ class LoadApplicationInstallers
     protected $installers;
 
     /**
-     * Create a new LoadApplicationInstallers instance.
+     * Create a new LoadSiteInstallers instance.
      *
      * @param InstallerCollection $installers
      * @param                     $reference
@@ -50,14 +50,14 @@ class LoadApplicationInstallers
     {
         $this->installers->add(
             new Installer(
-                'streams::installer.running_application_migrations',
+                'streams::installer.running_site_migrations',
                 function (Kernel $console) {
                     $console->call(
                         'migrate',
                         [
                             '--force' => true,
                             '--app'   => $this->reference,
-                            '--path'  => 'vendor/anomaly/streams-platform/migrations/application',
+                            '--path'  => 'vendor/anomaly/streams-platform/migrations/site',
                         ]
                     );
                 }

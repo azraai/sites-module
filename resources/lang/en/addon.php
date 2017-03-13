@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title'       => 'Applications',
-    'name'        => 'Applications Module',
-    'description' => 'Manage applications in your PyroCMS installation.',
+    'title'       => 'Sites',
+    'name'        => 'Sites Module',
+    'description' => 'Manage sites in your PyroCMS installation.',
 ];

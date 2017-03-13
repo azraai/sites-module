@@ -1,23 +1,23 @@
-<?php namespace Anomaly\ApplicationsModule\Application\Command;
+<?php namespace Anomaly\SitesModule\Site\Command;
 
-use Anomaly\Streams\Platform\Addon\Module\Module;
-use Anomaly\Streams\Platform\Addon\Module\ModuleCollection;
+use Anomaly\Streams\Platform\Addon\Extension\Extension;
+use Anomaly\Streams\Platform\Addon\Extension\ExtensionCollection;
 use Anomaly\Streams\Platform\Installer\Installer;
 use Anomaly\Streams\Platform\Installer\InstallerCollection;
 use Anomaly\Streams\Platform\Console\Kernel;
 
 /**
- * Class LoadModuleSeeders
+ * Class LoadExtensionInstallers
  *
  * @link   http://pyrocms.com/
  * @author PyroCMS, Inc. <support@pyrocms.com>
  * @author Ryan Thompson <ryan@pyrocms.com>
  */
-class LoadModuleSeeders
+class LoadExtensionInstallers
 {
 
     /**
-     * The application reference.
+     * The site reference.
      *
      * @var string
      */
@@ -31,10 +31,10 @@ class LoadModuleSeeders
     protected $installers;
 
     /**
-     * Create a new LoadModuleSeeders instance.
+     * Create a new LoadExtensionInstallers instance.
      *
      * @param InstallerCollection $installers
-     * @param                     $reference
+     * @param string              $reference
      */
     public function __construct(InstallerCollection $installers, $reference)
     {
@@ -45,27 +45,26 @@ class LoadModuleSeeders
     /**
      * Handle the command.
      *
-     * @param ModuleCollection $modules
+     * @param ExtensionCollection $extensions
      */
-    public function handle(ModuleCollection $modules)
+    public function handle(ExtensionCollection $extensions)
     {
-        /* @var Module $module */
-        foreach ($modules as $module) {
+        /* @var Extension $extension */
+        foreach ($extensions as $extension) {
 
-            if ($module->getNamespace() == 'anomaly.module.installer') {
+            if ($extension->getNamespace() == 'anomaly.extension.installer') {
                 continue;
             }
 
             $this->installers->add(
                 new Installer(
-                    trans('streams::installer.seeding', ['seeding' => trans($module->getName())]),
-                    function (Kernel $console) use ($module) {
+                    trans('streams::installer.installing', ['installing' => trans($extension->getName())]),
+                    function (Kernel $console) use ($extension) {
                         $console->call(
-                            'db:seed',
+                            'extension:install',
                             [
-                                '--addon' => $module->getNamespace(),
-                                '--app'   => $this->reference,
-                                '--force' => true,
+                                'extension' => $extension->getNamespace(),
+                                '--app'     => $this->reference,
                             ]
                         );
                     }
@@ -73,5 +72,4 @@ class LoadModuleSeeders
             );
         }
     }
-
 }

@@ -1,7 +1,10 @@
 <?php
 
 return [
-    'applications' => [
-        'title' => 'Applications',
+    'sites'   => [
+        'title' => 'Sites',
+    ],
+    'domains' => [
+        'title' => 'Domains',
     ],
 ];

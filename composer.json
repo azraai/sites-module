@@ -1,9 +1,9 @@
 {
-    "name": "anomaly/applications-module",
+    "name": "anomaly/sites-module",
     "type": "streams-addon",
     "autoload": {
         "psr-4": {
-            "Anomaly\\ApplicationsModule\\": "src/"
+            "Anomaly\\SitesModule\\": "src/"
         }
     }
 }

@@ -1,23 +1,23 @@
-<?php namespace Anomaly\ApplicationsModule\Application\Command;
+<?php namespace Anomaly\SitesModule\Site\Command;
 
-use Anomaly\Streams\Platform\Addon\Extension\Extension;
-use Anomaly\Streams\Platform\Addon\Extension\ExtensionCollection;
+use Anomaly\Streams\Platform\Addon\Module\Module;
+use Anomaly\Streams\Platform\Addon\Module\ModuleCollection;
 use Anomaly\Streams\Platform\Installer\Installer;
 use Anomaly\Streams\Platform\Installer\InstallerCollection;
 use Anomaly\Streams\Platform\Console\Kernel;
 
 /**
- * Class LoadExtensionInstallers
+ * Class LoadModuleInstallers
  *
  * @link   http://pyrocms.com/
  * @author PyroCMS, Inc. <support@pyrocms.com>
  * @author Ryan Thompson <ryan@pyrocms.com>
  */
-class LoadExtensionInstallers
+class LoadModuleInstallers
 {
 
     /**
-     * The application reference.
+     * The site reference.
      *
      * @var string
      */
@@ -31,7 +31,7 @@ class LoadExtensionInstallers
     protected $installers;
 
     /**
-     * Create a new LoadExtensionInstallers instance.
+     * Create a new LoadModuleInstallers instance.
      *
      * @param InstallerCollection $installers
      * @param string              $reference
@@ -45,26 +45,30 @@ class LoadExtensionInstallers
     /**
      * Handle the command.
      *
-     * @param ExtensionCollection $extensions
+     * @param ModuleCollection $modules
      */
-    public function handle(ExtensionCollection $extensions)
+    public function handle(ModuleCollection $modules)
     {
-        /* @var Extension $extension */
-        foreach ($extensions as $extension) {
+        /* @var Module $module */
+        foreach ($modules as $module) {
 
-            if ($extension->getNamespace() == 'anomaly.extension.installer') {
+            if ($module->getNamespace() == 'anomaly.module.installer') {
+                continue;
+            }
+
+            if ($module->getNamespace() == 'anomaly.module.sites') {
                 continue;
             }
 
             $this->installers->add(
                 new Installer(
-                    trans('streams::installer.installing', ['installing' => trans($extension->getName())]),
-                    function (Kernel $console) use ($extension) {
+                    trans('streams::installer.installing', ['installing' => trans($module->getName())]),
+                    function (Kernel $console) use ($module) {
                         $console->call(
-                            'extension:install',
+                            'module:install',
                             [
-                                'extension' => $extension->getNamespace(),
-                                '--app'     => $this->reference,
+                                'module' => $module->getNamespace(),
+                                '--app'  => $this->reference,
                             ]
                         );
                     }

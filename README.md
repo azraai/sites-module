@@ -1,3 +1,3 @@
-# Applications Module
+# Sites Module
 
 The apps management module.

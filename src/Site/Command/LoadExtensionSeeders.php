@@ -1,23 +1,23 @@
-<?php namespace Anomaly\ApplicationsModule\Application\Command;
+<?php namespace Anomaly\SitesExtension\Site\Command;
 
-use Anomaly\Streams\Platform\Addon\Module\Module;
-use Anomaly\Streams\Platform\Addon\Module\ModuleCollection;
+use Anomaly\Streams\Platform\Addon\Extension\Extension;
+use Anomaly\Streams\Platform\Addon\Extension\ExtensionCollection;
 use Anomaly\Streams\Platform\Installer\Installer;
 use Anomaly\Streams\Platform\Installer\InstallerCollection;
 use Anomaly\Streams\Platform\Console\Kernel;
 
 /**
- * Class LoadModuleInstallers
+ * Class LoadExtensionSeeders
  *
  * @link   http://pyrocms.com/
  * @author PyroCMS, Inc. <support@pyrocms.com>
  * @author Ryan Thompson <ryan@pyrocms.com>
  */
-class LoadModuleInstallers
+class LoadExtensionSeeders
 {
 
     /**
-     * The application reference.
+     * The site reference.
      *
      * @var string
      */
@@ -31,10 +31,10 @@ class LoadModuleInstallers
     protected $installers;
 
     /**
-     * Create a new LoadModuleInstallers instance.
+     * Create a new LoadExtensionSeeders instance.
      *
      * @param InstallerCollection $installers
-     * @param string              $reference
+     * @param                     $reference
      */
     public function __construct(InstallerCollection $installers, $reference)
     {
@@ -45,30 +45,27 @@ class LoadModuleInstallers
     /**
      * Handle the command.
      *
-     * @param ModuleCollection $modules
+     * @param ExtensionCollection $extensions
      */
-    public function handle(ModuleCollection $modules)
+    public function handle(ExtensionCollection $extensions)
     {
-        /* @var Module $module */
-        foreach ($modules as $module) {
+        /* @var Extension $extension */
+        foreach ($extensions as $extension) {
 
-            if ($module->getNamespace() == 'anomaly.module.installer') {
-                continue;
-            }
-
-            if ($module->getNamespace() == 'anomaly.module.applications') {
+            if ($extension->getNamespace() == 'anomaly.extension.installer') {
                 continue;
             }
 
             $this->installers->add(
                 new Installer(
-                    trans('streams::installer.installing', ['installing' => trans($module->getName())]),
-                    function (Kernel $console) use ($module) {
+                    trans('streams::installer.seeding', ['seeding' => trans($extension->getName())]),
+                    function (Kernel $console) use ($extension) {
                         $console->call(
-                            'module:install',
+                            'db:seed',
                             [
-                                'module' => $module->getNamespace(),
-                                '--app'  => $this->reference,
+                                '--addon' => $extension->getNamespace(),
+                                '--all'   => $this->reference,
+                                '--force' => true,
                             ]
                         );
                     }
@@ -76,4 +73,5 @@ class LoadModuleInstallers
             );
         }
     }
+
 }

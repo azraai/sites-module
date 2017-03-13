@@ -1,16 +1,16 @@
-<?php namespace Anomaly\ApplicationsModule\Application;
+<?php namespace Anomaly\SitesModule\Site;
 
 use Anomaly\Streams\Platform\Support\Collection;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
- * Class ApplicationInstaller
+ * Class SiteInstaller
  *
  * @link   http://pyrocms.com/
  * @author PyroCMS, Inc. <support@pyrocms.com>
  * @author Ryan Thompson <ryan@pyrocms.com>
  */
-class ApplicationInstaller
+class SiteInstaller
 {
 
     use DispatchesJobs;
@@ -19,7 +19,6 @@ class ApplicationInstaller
      * Install the system.
      *
      * @param  array $parameters
-     * @return bool
      */
     public function install(array $parameters)
     {
@@ -33,6 +32,10 @@ class ApplicationInstaller
         $data->put('APPLICATION_DOMAIN', $parameters['domain']);
         $data->put('APPLICATION_REFERENCE', $parameters['reference']);
         $data->put('APP_URL', 'http://' . $parameters['domain']);
+
+        $data->put('ADMIN_USERNAME', $parameters['username']);
+        $data->put('ADMIN_EMAIL', $parameters['email']);
+        $data->put('ADMIN_PASSWORD', $parameters['password']);
 
         $contents = '';
 

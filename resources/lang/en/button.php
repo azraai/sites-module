@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'new_application' => 'New Application',
+    'new_site'   => 'New Site',
+    'add_domain' => 'Add Domain',
 ];

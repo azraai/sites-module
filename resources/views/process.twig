@@ -2,18 +2,18 @@
 
 {% block content %}
 
-    {{ asset_add('scripts.js', 'anomaly.module.applications::js/' ~ action ~'.js') }}
+    {{ asset_add('scripts.js', 'anomaly.module.sites::js/' ~ action ~'.js') }}
 
     <div id="progress" class="row">
         <div class="col-lg-12 col-lg-offset-6">
 
-            <p id="label" class="text-center">{{ trans('anomaly.module.applications::install.installing') }}...</p>
+            <p id="label" class="text-center">{{ trans('anomaly.module.sites::install.installing') }}...</p>
 
             <progress class="progress progress-primary" value="0" max="100">0%</progress>
 
             <div class="finished hidden animate fadeInUpBig">
-                <a href="{{ url_to(application.domain ~ '/admin/login') }}" target="_blank" class="btn btn-success">Login</a>
-                <a href="{{ url_to(application.domain) }}" target="_blank" class="btn btn-link">View Site</a>
+                <a href="{{ url_to(site.domain ~ '/admin/login') }}" target="_blank" class="btn btn-success">Login</a>
+                <a href="{{ url_to(site.domain) }}" target="_blank" class="btn btn-link">View Site</a>
             </div>
 
         </div>
@@ -21,7 +21,7 @@
 
     {% for key, installer in installers %}
         <div
-                data-action="{{ url('applications/' ~ (action == 'install' ? 'run' : 'seed') ~ '/' ~ application.reference ~ '/' ~ key) }}"
+                data-action="{{ url('sites/' ~ (action == 'install' ? 'run' : 'seed') ~ '/' ~ site.reference ~ '/' ~ key) }}"
                 data-step="{{ trans(installer.getMessage()) }}"
                 data-progress="{{ ((loop.index-1)/(installers.count())*100)|round(0, 'floor') }}"
         ></div>

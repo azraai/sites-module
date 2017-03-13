@@ -23,7 +23,7 @@ var install = function () {
 
                 label.text('Almost done...');
 
-                window.location = APPLICATION_URL + '/applications/finish/' + $(location).attr('href').split('/').reverse()[0]
+                window.location = APPLICATION_URL + '/sites/finish/' + $(location).attr('href').split('/').reverse()[0]
             }
         },
         error: function () {
